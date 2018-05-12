@@ -6,9 +6,9 @@ router.get('/', function(request, response, next) {
     response.render('index');
 });
 
-router.get('/lobby', requireAuthentication, (request, response) => {
+router.get('/lobby',(request, response) => {
     const { user } = request;
-
+    console.log('lobby', user);
     response.render('lobby', { user });
 });
 

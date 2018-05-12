@@ -29,13 +29,14 @@ app.use(
         store: new (require('connect-pg-simple')(session))(),
         resave: false,
         saveUninitialized: false,
+        secret: process.env.COOKIE_SECRET,
         cookie: {
             secure:
             process.env.ENVIRONMENT !== 'development' &&
             process.env.ENVIRONMENT !== 'test',
             maxAge: 7 * 24 * 60 * 60 * 1000
-        },
-        secret: process.env.COOKIE_SECRET
+        }
+
     })
 );
 

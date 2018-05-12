@@ -1,6 +1,7 @@
 extends ./layouts/layout
 
 block content
+
   h1 Log In
 
   form.form-horizontal(action='/users/login', method='post')
@@ -15,3 +16,5 @@ block content
     .form-group
       .col-sm-offset-2.col-sm-5
         button.btn.btn-default(type='submit') Sign in
+        a(href="/users/register") Register
+

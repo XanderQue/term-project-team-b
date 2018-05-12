@@ -3,18 +3,11 @@ const router = express.Router();
 const passport = require('../auth');
 const User = require('../db/users');
 
-router.post(
-    '/login',
-    passport.authenticate('local', {
-        successRedirect: '/lobby',
-        failureRedirect: '/'
-    })
-);
 
-router.get('/logout', (request, response) => {
-    request.logout();
-    response.redirect('/');
-});
+router.post('/login',passport.authenticate('local', {
+    successRedirect: '../lobby',
+    failureRedirect: '/'
+}));
 
 router.get('/register', (request, response) => {
     response.render('users/register');
@@ -22,14 +15,14 @@ router.get('/register', (request, response) => {
 
 router.post('/register', (request, response, next) => {
     const { email, password, name } = request.body;
-
+    console.log('register', password);
     User.create(email, password, name)
         .then(id => {
-            request.login({ email, password }, error => {
+            request.login({ email, password}, error => {
                 if (error) {
                     return next(error);
                 } else {
-                    return response.redirect('/lobby');
+                    return response.redirect('../lobby');
                 }
             });
         })

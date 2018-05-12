@@ -18,21 +18,21 @@ module.exports = {
                 allowNull: false,
                 unique: true
             },
-            password: {
+            hash: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
             wins: {
                 type: Sequelize.INTEGER,
-                default: 0
+                defaultValue: 0
             },
             loses: {
                 type: Sequelize.INTEGER,
-                default: 0
+                defaultValue: 0
             },
             games_played: {
                 type: Sequelize.INTEGER,
-                default: 0
+                defaultValue: 0
             }
         });
     },

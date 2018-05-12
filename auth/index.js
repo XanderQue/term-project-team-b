@@ -1,12 +1,12 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../db/users');
 
-const lookup = (email, pass, done) => {
+const lookup = (email, password, done) => {
     User.find(email)
-        .then(({ id, pass, email }) => {
-            if (bcrypt.compareSync(password, pass)) {
+        .then(({ id, hash, email }) => {
+            if (bcrypt.compareSync(password, hash)) {
                 done(null, { id, email });
             } else {
                 done('Please verify your email and password', false);
