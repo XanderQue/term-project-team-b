@@ -9,8 +9,15 @@ router.post('/login',passport.authenticate('local', {
     failureRedirect: '/'
 }));
 
+
+router.get('/logout', (request, response) => {
+    request.logout();
+    response.redirect('../');
+
+});
+
 router.get('/register', (request, response) => {
-    response.render('users/register');
+    response.render('register');
 });
 
 router.post('/register', (request, response, next) => {
