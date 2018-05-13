@@ -40,8 +40,14 @@ app.use(
     })
 );
 
+//authorization
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('*', function(req,res,next){
+    res.locals.user = req.user || null;
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

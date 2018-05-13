@@ -6,13 +6,13 @@ router.get('/', function(request, response, next) {
     response.render('index');
 });
 
-router.get('/lobby',(request, response) => {
+router.get('/lobby', requireAuthentication,(request, response) => {
     const { user } = request;
     console.log('lobby', user);
     response.render('lobby', { user });
 });
 
-router.get('/gamePage', function(request, response, next) {
+router.get('/gamePage', requireAuthentication, function(request, response, next) {
     response.render('gamePage');
 });
 

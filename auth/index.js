@@ -6,9 +6,12 @@ const User = require('../db/users');
 const lookup = (email, password, done) => {
     User.find(email)
         .then(({ id, hash, email }) => {
+            console.log("found user : "+ email);
             if (bcrypt.compareSync(password, hash)) {
+                console.log("Password match");
                 done(null, { id, email });
             } else {
+                console.log("Password did not match");
                 done('Please verify your email and password', false);
             }
         })
